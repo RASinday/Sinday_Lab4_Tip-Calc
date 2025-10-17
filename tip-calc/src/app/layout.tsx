@@ -1,21 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import './globals.css'
+import { Space_Mono } from 'next/font/google'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const spaceMono = Space_Mono({ weight: '700', subsets: ['latin'] })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: 'Tip Calculator App',
-  description: 'Frontend Mentor using Next.js and Tailwind CSS',
-};
+export const metadata = {
+  title: 'Splitter - Tip Calculator',
+  description: 'Frontend Mentor Tip Calculator App built with Next.js',
+}
 
 export default function RootLayout({
   children,
@@ -24,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"></link>
+      </head>
+      <body className="antialiased">
         {children}
       </body>
     </html>

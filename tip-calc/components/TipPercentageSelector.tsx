@@ -20,12 +20,31 @@ const TipPercentageSelector: React.FC<TipPercentageSelectorProps> = ({
   };
 
   return (
-    percentageOptions,
-    selectPercentage,
-    handleCustomPercentageInput,
-    activePercentage,
-    customPercentage
-  };
+    <div className="tip-selector-container">
+      <span className="tip-selector-label">
+        Select Tip %
+      </span>
+      <div className="tip-options-grid">
+        {percentageOptions.map((percentage) => (
+          <PercentageButton
+            key={percentage}
+            value={percentage}
+            isActive={activePercentage === percentage && customPercentage === ""}
+            onPercentageSelect={() => selectPercentage(percentage)}
+          />
+        ))}
+        <div className="custom-tip-container">
+          <input
+            type="text"
+            placeholder="Custom"
+            value={customPercentage}
+            onChange={(e) => handleCustomPercentageInput(e.target.value)}
+            className="custom-tip-input"
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default TipPercentageSelectorLogic;
+export default TipPercentageSelector;
