@@ -41,19 +41,40 @@ const CalculatorField: React.FC<CalculatorFieldProps> = ({
     }
   };
 
-  const handleFocus = () => setIsActive(true);
-  const handleBlur = () => {
-    setIsActive(false);
-    validateOnBlur();
-  };
-
-  return {
-    isActive,
-    hasValidationError,
-    processInputChange,
-    handleFocus,
-    handleBlur
-  };
+  return (
+    <div className={`field-container`}>
+      <label
+        className="field-label"
+        htmlFor={label}
+      >
+        {label}
+      </label>
+      <div
+        className={`field-wrapper ${isActive ? "active-field" : ""} ${
+          hasValidationError ? "error-field" : ""
+        }`}
+      >
+        {hasValidationError && (
+          <p className="error-message">{`Value cannot be zero`}</p>
+        )}
+        {icon && (
+          <img src={icon} alt="field icon" className="field-icon" />
+        )}
+        <input
+          className={`field-input ${customClass ?? ""}`}
+          placeholder={placeholderText ?? "0"}
+          value={value}
+          onFocus={() => setIsActive(true)}
+          onBlur={() => {
+            setIsActive(false);
+            validateOnBlur();
+          }}
+          onChange={processInputChange}
+          type={allowDecimal ? "number" : "text"}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default CalculatorField;
